@@ -31,6 +31,8 @@ def main():
     # first two tests are from keyboard, third test is from a file
     # # add another input for I or F
     # input from keyboard
+    data = []
+    n = 0
     print("Input file type")
     input_method = input()
     if input_method.upper() == "I":
@@ -38,9 +40,12 @@ def main():
         data = list(map(int, input().split()))
     elif input_method.upper() == "F":
         filename = input()
-        with open(filename) as file:
-            n = int(file.readline())
-            data = list(map(int, file.readline().split()))
+        path = open("./tests/" + filename, "r")
+        fails = path.read()
+        fails = fails.split('\n')
+        n = int(fails[0])
+        data = list(map(int, fails[1].split()))
+        
     else:
         print("Not cerrect input")
         return
@@ -69,3 +74,4 @@ def main():
         print(i,j)
 if __name__ == "__main__":
     main()
+
